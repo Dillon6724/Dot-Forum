@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create new post</title>
+  <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+  <h1>Create a new post</h1>
+  <form action="" method="">
+    <h3>Enter a Title<h3>
+    <input type="text"
+           name="thread[title]"
+           placeholder="Title"><br/>
+    <h3>Input Post</h3>
+    <textarea type="text"
+              name="thread[post]"
+              placeholder="Tell me what you're thinking"></textarea><br/>
+    <h3>Choose Tags</h3>
+    <input type="checkbox" name="thread[tags][]" value="entertainment"> Entertainment
+    <input type="checkbox" name="thread[tags][]" value="music"> Music
+    <input type="checkbox" name="thread[tags][]" value="other"> Other
+    <input type="checkbox" name="thread[tags][]" value="nonsense"> Nonsense
+    <input type="checkbox" name="thread[tags][]" value="poitics"> Poitics
+    <input type="checkbox" name="thread[tags][]" value="science-technology"> Science & Technology
+
+  </form>
+
+</body>
+</html>
