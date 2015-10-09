@@ -3,7 +3,7 @@ var express   = require('express'),
 	server    = express(),
 	MONOGOURI = process.env.MONGOLAB_URI || "mongodb://localhost:27017"
 	mongoose  = require('mongoose'),
-	dbname    = 'useful name';
+	dbname    = 'usefulname';
 
 
 server.get('/super-secret-test', function (req, res) {
