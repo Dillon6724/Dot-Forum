@@ -6,22 +6,16 @@
   <link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 <body>
-  <h1>Enter your login or sign up</h1>
-  <form action="" method="">
+  <h1>Enter your login or <a href="/users/new">Sign Up!</a></button></h1>
+  <form action="/users" method="post">
     <span>Username</span><input  type="text"
             name="user[username]"
             placeholder="Enter Username"><br/>
-    <span>Password</span><input  type="text"
+    <span>Password</span><input  type="password"
             name="user[password]"
             placeholder="Enter Password"><br/>
+    <input type="submit">
   </form>
-  <form>
-    <input  type="submit"
-            value="Login"><button><a href="/users/new">Sign Up!</a></button><br/>
-  </form>
-
-
-
 <a href="/topics/categories">SKIP</a></button>
 
 
