@@ -1,0 +1,100 @@
+
+
+a{
+	text-decoration: none;
+	color: grey;
+}
+
+a:hover {
+	text-decoration: none;
+	color: lightblue;
+}
+
+h1 {
+	text-align: center;
+	padding-bottom: 5%;
+	font-size: 50px;
+}	
+
+h2 {
+	text-align: center;
+	font-size: 20px;
+	display: inline;
+}
+h3 {
+	width: 400%;
+}
+
+.category-link {
+	display: block;
+	color: grey;
+	width: 641%;
+	margin: 0 auto;
+	font-size: 40px;
+}
+.category-container {
+	width: 50%;
+	margin: 0 auto;
+}
+ .post-title {
+ 	text-decoration: underline;
+ 	display: inline-block;
+ 	font-size: 70px;
+ 	padding-bottom: 30px;
+ 	padding: 10px;
+ }
+
+ .author {
+ 	display: inline-block;
+ }
+
+ .post {
+ 	text-align: center;
+ 	width: 100%;
+ 	margin: 0 auto;
+ 	padding: 40px;
+ 	font-size: 27px;
+ 	text-align: left;
+ }
+
+.post-container {
+	border: 1px solid grey;
+ 	width: 90%;
+ 	margin: 0 auto;
+}
+ .comment-container {
+ 	border: 1px solid grey;
+ 	width: 90%;
+ 	margin: 0 auto;
+ 	background-color: #C2FFEB;
+ }
+
+ .comment-form {
+ 	display: inline-block;
+ }
+
+ .comment {
+ 	display: block;
+ 	font-size: 20px;
+ 	border-bottom: 1px solid grey;
+ }
+
+ .delete, .submit-comment {
+ 	display: inline;
+ 	font-size: 10px;
+ 	color: #995C5C;
+ 	background-color: #C2FFEB;
+ 	border:none;
+ }
+
+ .delete:hover {
+ 	color: red;
+ }
+
+.submit-comment:hover {
+	color: blue;
+}
+
+ .new-comment {
+ 	display: inline;
+ }

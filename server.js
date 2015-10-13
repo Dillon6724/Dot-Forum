@@ -24,16 +24,17 @@ var mongoose = require('mongoose'),
 //////////////////////////      MONGOOSE     ////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
 var userSchema = new Schema({
-	username: String,
-	password: String
+	username: {type: String, requied: true, unique: true },
+	password: {type: String, requied: true, unique: false },
 }),
 	threadSchema = new Schema({
-	title: String,
-	post: String,
-	tags: [String],
+	title: {type: String, requied: true, unique: true },
+	post: {type: String, requied: true, unique: true },
+	tags: {type: [String], required: true},
 	author: String,
 	likes: Number,
-	comments: [String]
+	comments: [String],
+	commentAuthor: [String]
 });
 
 var User = mongoose.model('user', userSchema);
@@ -73,12 +74,22 @@ server.patch('/threads/show/:id', function (req, res) {
 });
 
 server.patch('/threads/comment/:id', function (req, res) {
-	var comment = req.body.comment
-	Thread.findByIdAndUpdate(req.params.id, { $push: {comments: comment } }, function (err, updatedThread) {
-		if(!err) {
-			res.redirect(302, '/thread/' + req.params.id)
-		} else {
+	console.log("************** BODY IS: ", req.body);
+	var newComment = req.body.comment,
+		newAuthor = req.body.author;
+
+	Thread.findByIdAndUpdate(req.params.id, { $push: {comments: newComment } }, function (err, updatedThread) {
+		if(err) {
 			console.log(err)
+		} else {
+			console.log("*************** NEW AUTHOR IS: ", newAuthor);
+			Thread.findByIdAndUpdate(updatedThread._id, { $push: {commentAuthor: newAuthor } }, function (err, updatedThread) {
+				if(!err) {
+					res.redirect(302, '/thread/' + req.params.id)
+				} else {
+					console.log(err)
+				}
+			});
 		}
 	})
 });
@@ -89,7 +100,7 @@ server.delete('/thread/delete/:id', function (req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.redirect(302, '/topics/categories');
+      res.redirect(302, '/categories');
     }
   });
 });
@@ -112,7 +123,7 @@ server.post('/users', function (req, res) {
 	User.findOne({ username : attempt.username}, function (err, user) {
 		if (user && user.password === attempt.password) {
 			req.session.currentUser = user.username;
-			res.redirect(301, '/topics/categories')
+			res.redirect(301, '/categories')
 		} else {
 			res.redirect(301, '/')
 		}
@@ -127,7 +138,7 @@ server.post('/users/new', function (req, res) {
 	var newUser = new User(userInfo);
 	newUser.save(function (err, order) {
 		if (!err) {
-			res.redirect(302, '/topics/categories')
+			res.redirect(302, '/categories')
 		} else {
 				console.log(err);
 		};
@@ -164,8 +175,8 @@ server.get('/users/new', function (req, res) {
 	res.render('users/new', {});
 })
 
-server.get('/topics/categories', verifyLogIn, function (req, res) {
-	res.render('topics/category')
+server.get('/categories', verifyLogIn, function (req, res) {
+	res.render('category-index/category')
 })
 
 server.get('/thread/:id', verifyLogIn, function (req, res) {
@@ -212,6 +223,10 @@ server.get('/categories/nonsense', verifyLogIn, function (req, res) {
 
 server.get('/categories/other', verifyLogIn, function (req, res) {
 	renderRoute( req, res, 'other')
+});
+
+server.get('/categories/music', verifyLogIn, function (req, res) {
+	renderRoute( req, res, 'music')
 });
 
 server.get('/threads/new', verifyLogIn, function (req, res) {

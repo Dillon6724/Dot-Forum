@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
   <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <meta charset="UTF-8">
   <title>Entertainment</title>
   <link rel="stylesheet" type="text/css" href="/style.css">
@@ -22,36 +23,51 @@
     <form action="/like/<%= thread._id %>?_method=PATCH" method="post">
       <input type="submit"
               name="like" 
-              value="Like">
-    </form><span><%= thread.likes %></span>
-  <p><%= thread.author %>:</p>
-  <h1><%= thread.title %></h1>
-  <p><%= thread.post %></p>
-
-      <% thread.comments.forEach(function (comment, i) { %>
-         <span style=" background-color: black"><%= currentUser %>: <%= comment %></span>
-            <% if (thread.author == currentUser) { %>
-    <form action="/comment/delete/<%= thread._id %>/<%= comment %>?_method=DELETE"
+              value="Like"><%= thread.likes %>
+    </form>
+    <% if (thread.author == currentUser) { %>
+      <button><a href="/thread/edit/<%=thread._id%>">Edit this thread</a></button>
+      <form action="/thread/delete/<%= thread._id %>?_method=DELETE"
             method="post">
-      <input type="submit" value="Delete">
-    </form>
-  <% } %>
-      <% }) %>
-
-      <form class="comment" action="/threads/comment/<%= thread._id %>?_method=PATCH" method="post">
-        <textarea name="comment"
-                  placeholder=" Make comment"></textarea>
-        <input type="submit"
-                value="Submit Comment">
+        <input type="submit" value="Delete this Thread">
       </form>
+    <% } %>
+    <div class="post-container">
+      <h1 class="post-title"><%= thread.title %></h1><h2 class="author">author:<%= thread.author %></h2>
+      <h1 class="post"><%= thread.post %></h1>
+    </div>
 
-  <% if (thread.author == currentUser) { %>
-  	<a href="/thread/edit/<%=thread._id%>">Edit</a>
-    <form action="/thread/delete/<%= thread._id %>?_method=DELETE"
-          method="post">
-      <input type="submit" value="Delete this Thread">
-    </form>
-  <% } %>
+      <div class="comment-container" >
+        <span class="comment">
+          <% thread.commentAuthor.forEach(function (author, i) { %>
+            <%= author %>: 
+            <% thread.comments.forEach(function (comment, i) { %>
+              <%= comment %>
+              <% if (thread.author == currentUser) { %>
+                <form class="comment-form" 
+                    action="/comment/delete/<%= thread._id %>/<%= comment %>?_method=DELETE"
+                     method="post">
+                  <input class="delete" type="submit" value="Delete">
+                </form>
+             <% } %>
+            <% }) %>
+          <% }) %>
+        </span>
+      </div>
+ 
+
+      <form class="new-comment" action="/threads/comment/<%= thread._id %>?_method=PATCH" method="post">
+        <textarea name="comment"
+                  placeholder=" Make comment"
+                  rows="1"
+                  cols="60"></textarea>
+        <input type="hidden"
+               name="author"
+               value="<%= currentUser %>">
+        <input class="submit-comment" type="submit">
+      </form>
+      </hr>
+    </div>
 
 </body>
 </html>
