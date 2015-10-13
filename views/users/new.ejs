@@ -6,14 +6,14 @@
   <link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 <body>
-  <h1>Enter the information to sign up!</h1>
+  <h1>Enter the information to sign up! Or <a href="/">Log In!</a></h1>
   <form action="/users/new" method="post">
-    <span>Username</span><input  type="text"
+    <input  type="text"
             name="user[username]"
-            placeholder="Enter Username"><br/>
-    <span>Password</span><input  type="password"
+            placeholder="Enter Username">Choose a Username<br/>
+    <input  type="password"
             name="user[password]"
-            placeholder="Enter Password"><br/>
+            placeholder="Enter Password">Create a Password<br/>
     <input  type="submit"
             value="Sign up">
   </form>

@@ -1,17 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <meta charset="UTF-8">
   <title>Entertainment</title>
   <link rel="stylesheet" type="text/css" href="/style.css">
 </head>
-<body>
- 
+
+<body> 
   	<form action="/logout" method="post">
 	    <input type="submit"
 	            value="Logout">
   	</form>
+    <form action="/like/<%= thread._id %>?_method=PATCH" method="post">
+      <input type="submit"
+              value="Like">
+    </form><span><%= thread.likes %></span>
+  <p><%= thread.author %>:</p>
   <h1><%= thread.title %></h1>
   <p><%= thread.post %></p>
+
+      <% thread.comments.forEach(function (comment, i) { %>
+         <span style=" background-color: black"><%= currentUser %>: <%= comment %></span>
+            <% if (thread.author == currentUser) { %>
+    <form action="/comment/delete/<%= thread._id %>/<%= comment %>?_method=DELETE"
+            method="post">
+      <input type="submit" value="Delete">
+    </form>
+  <% } %>
+      <% }) %>
+
+      <form class="comment" action="/threads/comment/<%= thread._id %>?_method=PATCH" method="post">
+        <textarea name="comment"
+                  placeholder=" Make comment"></textarea>
+        <input type="submit"
+                value="Submit Comment">
+      </form>
+
+  <% if (thread.author == currentUser) { %>
+  	<a href="/thread/edit/<%=thread._id%>">Edit</a>
+    <form action="/thread/delete/<%= thread._id %>?_method=DELETE"
+          method="post">
+      <input type="submit" value="Delete this Thread">
+    </form>
+  <% } %>
+
 </body>
 </html>

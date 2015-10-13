@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit your post</title>
+  <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+  <h1>Edit your post</h1>
+  
+  <form action="/threads/show/<%= thread._id %>?_method=PATCH" method="post">
+    <h3>Title<h3>
+    <input type="text"
+           name="thread[title]"
+           placeholder="Title"
+           value="<%= thread.title %>"><br/>
+    <h3>Post</h3>
+    <textarea type="text"
+              name="thread[post]"
+              placeholder="Tell me what you're thinking"><%= thread.post %></textarea><br/>
+              <%console.log(thread)%>
+    <h3>Tags</h3>
+    <input  id="entertainment" 
+            type="checkbox" 
+            name="thread[tags][]" 
+            value="entertainment"
+            <% thread.tags.forEach(function (tag, i) { %>
+            <% if (tag == 'entertainment'){ %>
+            <%= 'checked = "checked"' %>
+            <% }; %>
+            <% }) %>>Entertainment
+    <input  type="checkbox" 
+            name="thread[tags][]" 
+            value="music"
+            <% thread.tags.forEach(function (tag, i) { %>
+            <% if (tag == 'music'){ %>
+            <%= 'checked = "checked"' %>
+            <% }; %>
+            <% }) %>>Music
+    <input type="checkbox" 
+           name="thread[tags][]" 
+           value="other"
+            <% thread.tags.forEach(function (tag, i) { %>
+            <% if (tag == 'other'){ %>
+            <%= 'checked = "checked"' %>
+            <% }; %>
+            <% }) %>>Other
+    <input type="checkbox" 
+           name="thread[tags][]" 
+           value="nonsense"
+           <% thread.tags.forEach(function (tag, i) { %>
+            <% if (tag == 'nonsense'){ %>
+            <%= 'checked = "checked"' %>
+            <% }; %>
+            <% }) %>> Nonsense
+    <input type="checkbox" 
+           name="thread[tags][]" 
+           value="poitics"
+           <% thread.tags.forEach(function (tag, i) { %>
+            <% if (tag == 'poitics'){ %>
+            <%= 'checked = "checked"' %>
+            <% }; %>
+            <% }) %>> Poitics
+    <input type="checkbox" 
+           name="thread[tags][]" 
+           value="science-technology"
+           <% thread.tags.forEach(function (tag, i) { %>
+            <% if (tag == 'science-technology'){ %>
+            <%= 'checked = "checked"' %>
+            <% }; %>
+            <% }) %>> Science & Technology <br/>
+    <input type="hidden" 
+           name="thread[author]" 
+           value="<%=author%>">
+    <input type="submit"
+            value="Save Changes">
+  </form>
+
+</body>
+</html>
