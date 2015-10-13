@@ -45,8 +45,19 @@ mongoose.connect('mongodb://localhost:27017/fourm');
 ///////////////////////////////   ROUTES    /////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
 
-server.patch('/likes/:id', function (req, res) {
-	req
+server.patch('/like/:id', function (req, res) {
+	var newLikeCount;
+	Thread.findById(req.params.id, function (err, thread) {
+		newLikeCount = thread.likes += 1;
+		Thread.findByIdAndUpdate(req.params.id,{likes: newLikeCount} , function (err, updatedThread) {
+		if(!err) {
+			res.redirect(302, '/thread/' + req.params.id)
+		} else {
+			console.log(err)
+		}
+	})
+	});
+	
 })
 
 server.patch('/threads/show/:id', function (req, res) {

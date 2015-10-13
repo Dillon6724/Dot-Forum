@@ -17,7 +17,7 @@
 		<% thread.tags.forEach(function (tag, i) { %>
 			<% if (tag == "music") { %>
 				<% console.log(thread._id)%>
-				<h3><a href="/thread/<%=thread._id %>"><%= thread.title %><a/></h3>
+				<h3><a href="/thread/<%=thread._id %>"><%= thread.title %>(comments: <%= thread.comments.length %>)<a/></h3>
 			<% }; %>
 		<% }); %>
 	<% }); %>

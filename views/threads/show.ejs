@@ -21,6 +21,7 @@
   	</form>
     <form action="/like/<%= thread._id %>?_method=PATCH" method="post">
       <input type="submit"
+              name="like" 
               value="Like">
     </form><span><%= thread.likes %></span>
   <p><%= thread.author %>:</p>
