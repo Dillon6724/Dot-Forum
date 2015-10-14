@@ -10,16 +10,18 @@ var mongoose = require('mongoose'),
     	}
     },
     renderRoute = function (req, res, route) {
-    	Thread.find({}, function (err, allThreads) {
+ 
+    	Thread.find({}).sort({ 'likesLength': -1 }).exec(function (err, threads) {
+			console.log("*&*&*&*&*&*&*&*&* THREADS: ", threads)
 			if (!err){
 				res.render('category-index/' + route + '-index', {
-					allThreads: allThreads
+					allThreads: threads
 				});
 			} else {
 				console.log(err);
 			};
-		});
-    };
+		});	
+	}
 
 //////////////////////////      MONGOOSE     ////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
@@ -32,7 +34,8 @@ var userSchema = new Schema({
 	post: {type: String, requied: true, unique: true },
 	tags: {type: [String], required: true},
 	author: String,
-	likes: Number,
+	likes: [ String ], // likes is an array of usernames...
+	likesLength: Number,
 	comments: [String],
 	commentAuthor: [String]
 });
@@ -46,20 +49,27 @@ mongoose.connect('mongodb://localhost:27017/fourm');
 ///////////////////////////////   ROUTES    /////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
 
-server.patch('/like/:id', function (req, res) {
-	var newLikeCount;
+server.post('/threads/:id/like', function (req, res) {
 	Thread.findById(req.params.id, function (err, thread) {
-		newLikeCount = thread.likes += 1;
-		Thread.findByIdAndUpdate(req.params.id,{likes: newLikeCount} , function (err, updatedThread) {
-		if(!err) {
-			res.redirect(302, '/thread/' + req.params.id)
+		var usernameIndex = thread.likes.indexOf(req.session.currentUser);
+		thread.likesLength = thread.likes.length;
+
+		if (usernameIndex > -1) {
+			// we found the username in the thread.likes array
 		} else {
-			console.log(err)
+			// it's not yet in there!
+			thread.likes.push(req.session.currentUser);
 		}
-	})
+
+		thread.save(function (saveErr, saveThread) {
+			if (!err) {
+				res.redirect(302, '/thread/' + req.params.id)
+			} else {
+				console.log(err);
+			}
+		})
 	});
-	
-})
+});
 
 server.patch('/threads/show/:id', function (req, res) {
 	var threadOptions = req.body.thread
@@ -74,48 +84,33 @@ server.patch('/threads/show/:id', function (req, res) {
 });
 
 server.patch('/threads/comment/:id', function (req, res) {
-	console.log("************** BODY IS: ", req.body);
 	var newComment = req.body.comment,
 		newAuthor = req.body.author;
 
 	Thread.findByIdAndUpdate(req.params.id, { $push: {comments: newComment } }, function (err, updatedThread) {
 		if(err) {
 			console.log(err)
-		} else {
-			console.log("*************** NEW AUTHOR IS: ", newAuthor);
-			Thread.findByIdAndUpdate(updatedThread._id, { $push: {commentAuthor: newAuthor } }, function (err, updatedThread) {
+		} else {			Thread.findByIdAndUpdate(updatedThread._id, { $push: {commentAuthor: newAuthor } }, function (err, updatedThread) {
 				if(!err) {
 					res.redirect(302, '/thread/' + req.params.id)
 				} else {
 					console.log(err)
 				}
-			});
+			})
 		}
 	})
-});
+})
 
 
 server.delete('/thread/delete/:id', function (req, res) {
-  Thread.findByIdAndRemove(req.params.id, function (err) {
-    if (err) {
-      console.log(err);
-    } else {
-      res.redirect(302, '/categories');
-    }
-  });
-});
-
-server.delete('/comment/delete/:id/:comment', function (req, res) {
-	var comment = req.params.comment
-  	Thread.findByIdAndUpdate(req.params.id, { $pull: {"comments": comment } }, function (err) {
-    	if (err) {
-      	console.log(err);
-    	} else {
-      	res.redirect(302, '/thread/' + req.params.id);
-    	}
-  	});
-});
-
+	Thread.findByIdAndRemove(req.params.id, function (err) {
+	    if (err) {
+	      console.log(err);
+	    } else {
+	      res.redirect(302, '/categories');
+	    }
+ 	})
+})
        ////////  POSTS  //////////
 
 server.post('/users', function (req, res) {
@@ -123,14 +118,12 @@ server.post('/users', function (req, res) {
 	User.findOne({ username : attempt.username}, function (err, user) {
 		if (user && user.password === attempt.password) {
 			req.session.currentUser = user.username;
-			res.redirect(301, '/categories')
+			res.redirect(301, '/categories');
 		} else {
-			res.redirect(301, '/')
+			res.redirect(301, '/');
 		}
-	
-	})
-
-})
+	});
+});
 
 server.post('/users/new', function (req, res) {
 	var userInfo = req.body.user
@@ -138,10 +131,10 @@ server.post('/users/new', function (req, res) {
 	var newUser = new User(userInfo);
 	newUser.save(function (err, order) {
 		if (!err) {
-			res.redirect(302, '/categories')
+			res.redirect(302, '/categories');
 		} else {
 				console.log(err);
-		};
+		}
 	});
 });
 
@@ -153,31 +146,31 @@ server.post('/threads/new', function (req, res) {
 
 	newThread.save(function (err, thread) {
 		if (!err) {
-			res.redirect(302, '/thread/' + thread._id)
+			res.redirect(302, '/thread/' + thread._id);
 		} else {
 				console.log(err);
 		};
 	});
-})
+});
 
 server.post('/logout', function (req, res) {
-	req.session.currentUser = null;
+	req.session.currentUser = null
 	res.redirect(301, '/')
-})
+});
 
 
        ///////////  GETS   ////////////
 server.get('/', function (req, res) {
 	res.render('welcome', {});
-})
+});
 
 server.get('/users/new', function (req, res) {
 	res.render('users/new', {});
-})
+});
 
 server.get('/categories', verifyLogIn, function (req, res) {
 	res.render('category-index/category')
-})
+});
 
 server.get('/thread/:id', verifyLogIn, function (req, res) {
 	Thread.findById(req.params.id, function (err, specificThread) {
@@ -199,41 +192,21 @@ server.get('/thread/edit/:id', verifyLogIn, function (req, res) {
 				thread: specificThread,
 				author: req.session.currentUser
 			})
-		}
+		} else {
+			console.log(err)
+		};
 	});
 });
-  
-       /////// LINKS  TO INDEXES && NEW  ///////
 
-server.get('/categories/entertainment', verifyLogIn, function (req, res) {
-	renderRoute( req, res, 'entertainment')
-});
-
-server.get('/categories/politics', verifyLogIn, function (req, res) {
-	renderRoute( req, res, 'politics')
-});
-
-server.get('/categories/science-technology', verifyLogIn, function (req, res) {
-	renderRoute( req, res, 'science-technology')
-});
-
-server.get('/categories/nonsense', verifyLogIn, function (req, res) {
-	renderRoute( req, res, 'nonsense')
-});
-
-server.get('/categories/other', verifyLogIn, function (req, res) {
-	renderRoute( req, res, 'other')
-});
-
-server.get('/categories/music', verifyLogIn, function (req, res) {
-	renderRoute( req, res, 'music')
+server.get('/categories/:categoryName', verifyLogIn, function (req, res) {
+	renderRoute(req, res, req.params.categoryName)
 });
 
 server.get('/threads/new', verifyLogIn, function (req, res) {
 	res.render('threads/new', {
 		author: req.session.currentUser
-	})
-})
+	});
+});
 
 /////////////////////////      LISTNING AND HEROKU      //////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////

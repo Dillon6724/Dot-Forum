@@ -1,4 +1,13 @@
+body {
+	background-color: #EEEEEE;
+	font-family: 'Martel Sans', sans-serif;
+	color: #323237;
+}
 
+form {
+	width: 60%;
+	margin: 0 auto;
+}
 
 a{
 	text-decoration: none;
@@ -7,14 +16,21 @@ a{
 
 a:hover {
 	text-decoration: none;
-	color: lightblue;
+	color: white;
 }
 
 h1 {
 	text-align: center;
-	padding-bottom: 5%;
+	padding-bottom: 0px;
 	font-size: 50px;
 }	
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: inline;
+    background-color: red;
+}
 
 h2 {
 	text-align: center;
@@ -25,31 +41,119 @@ h3 {
 	width: 400%;
 }
 
-.category-link {
-	display: block;
-	color: grey;
-	width: 641%;
-	margin: 0 auto;
-	font-size: 40px;
-}
+
+
+
 .category-container {
-	width: 50%;
+	width: 80%;
 	margin: 0 auto;
+} 
+
+.category-div {
+	display: inline-block;
+	height: 100px;
+	width: 100px;
+	font-size: 40px;
+	border-radius: 50px;
+	margin: 122px;
+	margin-bottom: 5px;
+
 }
- .post-title {
+
+.category-div:hover {
+	height: 300px;
+	width: 300px;
+	border-radius: 150px;
+	margin: 22px;
+
+}
+
+.category-link {
+	text-align: center;
+    display: block;
+    position: relative;
+    margin-top: 37%;
+    font-size: 34px;
+    color: white;
+}
+
+
+.category-title {
+	color: #3F3F44;
+}
+
+
+
+
+.index-div {
+	height: 300px;
+	width: 300px;
+	font-size: 40px;
+	border-radius: 150px;
+	margin: 22px;
+	margin-bottom: 5px;
+	background-color: #92CDB8;
+	display: inline-block;
+
+}
+
+
+.index-link {
+	text-align: center;
+    display: block;
+    position: relative;
+    margin-top: 37%;
+    font-size: 20px;
+    color: white;
+    top: 23px;
+}
+
+
+
+
+.post-container {
+	border: 1px solid grey;
+ 	width: 700px;
+ 	height: 700px;
+ 	border-radius: 360px;
+ 	margin: 0 auto;
+ 	background-color: #92A769;
+ 	color: white;
+ 	margin-top: 10px;
+}
+
+.post-title {
  	text-decoration: underline;
- 	display: inline-block;
- 	font-size: 70px;
- 	padding-bottom: 30px;
+ 	display: block;
+ 	font-size: 40px;
  	padding: 10px;
+ 	padding-bottom: 0;
+ 	margin-top: 16%;
+ 	margin-left: 73px;
+ 	margin-right: 73px;
+ 	margin-bottom: 0px;
+
+ }
+
+ .like {
+ 	height: 40px;
+ 	width: 40px;
+ 	border-radius: 20px;
+ 	border: none;
+ 	background-color: #CFA0CF;
+ 	position: relative;
+ 	top: 10px;
+ 	left: 10px;
+
  }
 
  .author {
- 	display: inline-block;
+ 	display: block;
+ 	padding: 0;
+ 	margin: 0;
  }
 
  .post {
- 	text-align: center;
  	width: 100%;
  	margin: 0 auto;
  	padding: 40px;
@@ -57,11 +161,8 @@ h3 {
  	text-align: left;
  }
 
-.post-container {
-	border: 1px solid grey;
- 	width: 90%;
- 	margin: 0 auto;
-}
+
+
  .comment-container {
  	border: 1px solid grey;
  	width: 90%;
@@ -71,12 +172,19 @@ h3 {
 
  .comment-form {
  	display: inline-block;
+ 	width: 40px;
+ }
+
+ .comment-block {
+ 	display: block;
+ 	font-size: 20px;
  }
 
  .comment {
- 	display: block;
- 	font-size: 20px;
- 	border-bottom: 1px solid grey;
+ 	width: 350px;
+ 	height: 350px;
+ 	background-color: blue;
+ 	border-radius: 175px;
  }
 
  .delete, .submit-comment {
@@ -97,4 +205,101 @@ h3 {
 
  .new-comment {
  	display: inline;
+ }
+
+
+
+
+
+.newthread {
+	width: 60px;
+	height: 60px;
+	border-radius: 30px;
+	position: relative;
+    left: 875px;
+    top: 2px;
+    background-color: #A1A1A1;
+}
+
+.newthread:hover {
+	background-color: #75B5D6;
+}
+
+.newthread-link {
+	text-align: center;
+    display: block;
+    position: relative;
+    margin-top: -125%;
+    font-size: 22px;
+    color: white;
+    top:14px;
+}
+.entertainment {
+ 	background-color: #92CDB8;
+ }
+ .politics {
+ 	background-color: #92A769;
+ }
+.science {
+ 	background-color: #D0B566;
+ }
+.nonsense {
+ 	background-color: #BC96C6;
+ }
+ .film {
+ 	background-color: #D87E7E;
+ } 
+.music {
+ 	background-color: #D68E61;
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.a {
+ 	background-color: #92CDB8;
+ 	top: 98px;
+    left: 346px;
+ }
+ .b {
+ 	background-color: #92A769;
+ 	top: 25px;
+    left: 809px;
+ }
+.c {
+ 	background-color: #D0B566;
+ 	top: 380px;
+    left: 886px;
+ }
+.d {
+ 	background-color: #BC96C6;
+ 	top: 298px;
+    left: 611px;
+ }
+ .e {
+ 	background-color: #D87E7E;
+ 	top: 21px;
+    left: 50px;
+ } 
+.f {
+ 	background-color: #D68E61;
+ 	top: 371px;
+    left: 153px;
  }

@@ -1,34 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  	<meta charset="UTF-8">
-  	<title>Entertainment</title>
-  	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="/style.css">
-</head>
-
-<body>
-	<form action="/logout" method="post">
-	    <input type="submit"
-	            value="Logout">
-  	</form>
-	  	<h1>Nonsense thread</h1>
-	  	<div class="category-container">
-	  	<button class="newthread"><a href="/threads/new">Create New Thread</a></button>
-		<% allThreads.forEach(function (thread, i) { %>
-			<% thread.tags.forEach(function (tag, i) { %>
-				<% if (tag == "nonsense") { %>
-					<h3><a href="/thread/<%= thread._id %>"><%= thread.title %> (comments: <%= thread.comments.length %>)<a/></h3>
-				<% }; %>
-			<% }); %>
-		<% }); %>
- 	</div>
-</body>
-</html>
+<h1 class="category-title">choose a thread</h1>
+<div class="newthread"><a class="newthread-link" href="/threads/new">new</a></div>
+<div class="category-container">
+	<% allThreads.forEach(function (thread, i) { %>
+	<% thread.tags.forEach(function (tag, i) { %>
+		<% if (tag == "nonsense") { %>
+			<div class="index-div nonsense"><a  class="index-link"href="/thread/<%= thread._id %>"><%= thread.title %> (comments: <%= thread.comments.length %>)<a/></div>
+		<% }; %>
+	<% }); %>
+	<% }); %>
+</div>
