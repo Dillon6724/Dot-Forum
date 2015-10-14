@@ -42,10 +42,142 @@ h3 {
 }
 
 
+.nav-container {
+	position: fixed;
+}
+
+.nav {
+	color: white;
+	text-align: center;
+	position: relative;
+	margin-top: 5px;
+	text-decoration: none;
+	display: block;
+	height: 60px;
+	width: 60px;
+	border-radius: 30px;
+	left: -10px;
+	top: 5px;
+}
+
+.nav:hover {
+}
+
+.nav-a, .nav-b, .nav-c, .nav-d, .nav-e, .nav-f, .nav-g {
+	position: relative;
+	width: 30px;
+	height: 30px;
+	border-radius: 15px;
+	background-color: #CDCDCD;
+	left: 3px;
+
+}
+
+
+
+
+
+.nav-a:hover {
+	background-color: #666666;
+	width: 80px;
+	height: 80px;
+	border-radius: 40px;
+} 
+.nav-b:hover {
+	background-color: #92CDB8;
+	width: 80px;
+	height: 80px;
+	border-radius: 40px;
+} 
+.nav-c:hover {
+	background-color: #92A769;
+	width: 80px;
+	height: 80px;
+	border-radius: 40px;
+} 
+.nav-d:hover {
+	background-color: #D68E61;
+	width: 80px;
+	height: 80px;
+	border-radius: 40px;
+}
+.nav-e:hover {
+	background-color: #D87E7E ;
+	width: 80px;
+	height: 80px;
+	border-radius: 40px;
+}
+.nav-f:hover {
+	background-color: #D0B566;
+	width: 80px;
+	height: 80px;
+	border-radius: 40px;
+}
+.nav-g:hover {
+	background-color: #BC96C6;
+	width: 80px;
+	height: 80px;
+	border-radius: 40px;
+}
+.nav-h:hover {
+	width: 80px;
+	height: 80px;
+	border-radius: 40px;
+
+}
+
+
+
+
+
+.login, .signup{
+	width: 450px;
+	height: 450px;
+	border-radius: 225px;
+	background-color: red;
+	display: inline-block;
+	margin: 10px;
+	color: white;
+	font-size: 50px;
+	position: relative;
+}
+
+.login {
+	background-color: #869BDA;
+}
+ .signup {
+ 	background-color: #EB7D7D;
+ }
+
+.welcome-container {
+	width: 80%;
+	height: 461px;
+	margin: 0 auto;
+	margin-top: 
+}
+
+.welcome-text {
+	margin-top: 42%;
+	display: block;
+}
+
+.login-form, .signup-form {
+	font-size: 20px;
+	margin-top: 27%;
+}
+
+input {
+	color:black;
+}
+
+
+
+
 
 
 .category-container {
-	width: 80%;
+	width: 85%;
+	height: 560px;
 	margin: 0 auto;
 } 
 
@@ -57,6 +189,7 @@ h3 {
 	border-radius: 50px;
 	margin: 122px;
 	margin-bottom: 5px;
+	position: fixed;
 
 }
 
@@ -81,6 +214,14 @@ h3 {
 .category-title {
 	color: #3F3F44;
 }
+
+
+
+
+
+
+
+
 
 
 
@@ -111,13 +252,22 @@ h3 {
 
 
 
+
+
+
+
+
+
+
+
+
 .post-container {
-	border: 1px solid grey;
+	border: 1px solid #84B2E1;
  	width: 700px;
  	height: 700px;
  	border-radius: 360px;
  	margin: 0 auto;
- 	background-color: #92A769;
+ 	background-color: #84B2E1;
  	color: white;
  	margin-top: 10px;
 }
@@ -141,7 +291,7 @@ h3 {
  	border-radius: 20px;
  	border: none;
  	background-color: #CFA0CF;
- 	position: relative;
+ 	position: absolute;
  	top: 10px;
  	left: 10px;
 
@@ -161,13 +311,9 @@ h3 {
  	text-align: left;
  }
 
-
-
  .comment-container {
- 	border: 1px solid grey;
- 	width: 90%;
+ 	width: 75%;
  	margin: 0 auto;
- 	background-color: #C2FFEB;
  }
 
  .comment-form {
@@ -180,11 +326,34 @@ h3 {
  	font-size: 20px;
  }
 
+ .comment-left {
+ 	width: 500px;
+ 	height: 500px;
+ 	background-color: #CBCBF0;
+ 	border-radius: 250px;
+ }
+
+ .comment-right {
+ 	width: 500px;
+ 	height: 500px;
+ 	background-color: #675579;
+ 	border-radius: 250px;
+ 	display: block;
+ 	position:relative;
+ 	left: 339px;
+ 	margin-top: -132px;
+ 	margin-bottom: -132px;
+ }
+
  .comment {
- 	width: 350px;
- 	height: 350px;
- 	background-color: blue;
- 	border-radius: 175px;
+ 	color: white;
+ 	position: relative;
+ 	text-align: center;
+ 	display: inline-block;
+ 	margin: 20px;
+    top: 149px;
+}
+
  }
 
  .delete, .submit-comment {
@@ -206,10 +375,6 @@ h3 {
  .new-comment {
  	display: inline;
  }
-
-
-
-
 
 .newthread {
 	width: 60px;
@@ -254,20 +419,20 @@ h3 {
  }
 
 
+.new-form, .edit-form {
+	width: 563px;
+	height: 400px;
+	position: relative;
+	top: 110px;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+.new-container, .edit-container {
+	width: 550px;
+	height: 550px;
+	border-radius: 275px;
+	background-color: #9FDA9F;
+	margin: 0 auto;
+}
 
 
 

@@ -164,10 +164,6 @@ server.get('/', function (req, res) {
 	res.render('welcome', {});
 });
 
-server.get('/users/new', function (req, res) {
-	res.render('users/new', {});
-});
-
 server.get('/categories', verifyLogIn, function (req, res) {
 	res.render('category-index/category')
 });

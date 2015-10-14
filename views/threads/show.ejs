@@ -28,16 +28,26 @@
 
   <div class="comment-container" >
       <% var num = 0 %>
-      <% if (num % 2 === 0){ %>
-      <% } %>
       <% thread.commentAuthor.forEach(function (author, i) { %>
-        <div class="comment-block">
-          <div class="comment">
-              <p><%= author %>: 
-            <%= thread.comments[i] %>
-            <% var indexItem = thread.comments[i] %></p>
-          </div>
-         </div>
+        <% if (num % 2 === 0) { %>
+          <% num += 1 %>
+          <div class="comment-block">
+            <div class="comment-left">
+                <p class="comment"><%= author %>: 
+              <%= thread.comments[i] %>
+              <% var indexItem = thread.comments[i] %></p>
+            </div>
+           </div>
+        <% } else { %>
+          <% num += 1 %>
+          <div class="comment-block">
+            <div class="comment-right">
+                <p class="comment"><%= author %>: 
+              <%= thread.comments[i] %>
+              <% var indexItem = thread.comments[i] %></p>
+            </div>
+           </div>
+        <% } %>
       <% }) %>
   </div>
 
