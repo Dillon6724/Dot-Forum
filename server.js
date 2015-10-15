@@ -12,7 +12,6 @@ var mongoose = require('mongoose'),
     renderRoute = function (req, res, route) {
  
     	Thread.find({}).sort({ 'likesLength': -1 }).exec(function (err, threads) {
-			console.log("*&*&*&*&*&*&*&*&* THREADS: ", threads)
 			if (!err){
 				res.render('category-index/' + route + '-index', {
 					allThreads: threads
@@ -30,8 +29,8 @@ var userSchema = new Schema({
 	password: {type: String, requied: true, unique: false },
 }),
 	threadSchema = new Schema({
-	title: {type: String, requied: true, unique: true },
-	post: {type: String, requied: true, unique: true },
+	title: {type: String, requied: true, unique: false },
+	post: {type: String, requied: true, unique: false },
 	tags: {type: [String], required: true},
 	author: String,
 	likes: [ String ], // likes is an array of usernames...
@@ -48,6 +47,17 @@ mongoose.connect('mongodb://localhost:27017/fourm');
 
 ///////////////////////////////   ROUTES    /////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
+
+// server.use('/categories', function (req, res, next) {
+// 	res.locals.controller = "default";
+// 	next()
+// });
+
+// server.use(function (req, res, next) {
+// 	res.locals.controller = res.locals.controller || "controlled"
+// 	next();
+// })
+
 
 server.post('/threads/:id/like', function (req, res) {
 	Thread.findById(req.params.id, function (err, thread) {

@@ -1,18 +1,28 @@
+function Reload () {
+	$('.new-comment').addClass('newcomment-hide');
+	$('.textarea').addClass('textarea-hide')
+}
+
+Reload();
+
+
 var a = $('.a'),
 	b = $('.b'),
 	c = $('.c'),
 	d = $('.d'),
 	e = $('.e'),
 	f = $('.f'),
-	nava = $('.nav-a'),
-	navb = $('.nav-b'),
-	navc = $('.nav-c'),
-	navd = $('.nav-d'),
-	nave = $('.nav-e'),
-	navf = $('.nav-f'),
-	navg = $('.nav-g'),
-	login = $('.login')
-	signup = $('.signup')
+	nava = $('.nava'),
+	navb = $('.navb'),
+	navc = $('.navc'),
+	navd = $('.navd'),
+	nave = $('.nave'),
+	navf = $('.navf'),
+	navg = $('.navg'),
+	login = $('.login'),
+	signup = $('.signup'),
+	commentButton = $('.comment-button'),
+	cancel = $('.cancel');
 
 a.on('mouseover', function (e) {
 	$('.E').text('entertainment')
@@ -80,7 +90,7 @@ nava.on('mouseout', function (e) {
 });
 /////////////////////////////////////////////////
 navb.on('mouseover', function (e) {
-	$('.navb').text('entertainment')
+	$('.navb').text('entertain-ment')
 });
 navb.on('mouseout', function (e) {
 	$('.navb').text('e')
@@ -121,19 +131,13 @@ navg.on('mouseout', function (e) {
 	$('.navg').text('n')
 });
 /////////////////////////////////////////////////
+var commentField = '<div class="new-comment"><form class="textarea" action="/threads/comment/<%= thread._id %>?_method=PATCH" method="post"><textarea name="comment"placeholder=" Make comment"class="box" rows="8"cols="23"   cols="60"></textarea><input type="hidden"name="author"value="<%= currentUser %>"><input class="submit-comment" type="submit"></form><button class="cancel">cancel</button></div>'
 
-
-
-
-
-
-
-
-
-
-
-
-
+commentButton.on('click', function(e){
+	$('.new-comment').toggleClass('newcomment-hide');
+	$('.textarea').toggleClass('textarea-hide')
+});
+ 
 
 
 

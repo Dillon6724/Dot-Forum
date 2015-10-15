@@ -10,10 +10,12 @@
           <input type="text"
                  name="thread[title]"
                  placeholder="Title"
+                 maxlength="46"
                  value="<%= thread.title %>"><br/>
           <h3>post</h3>
           <textarea type="text"
                     name="thread[post]"
+                    maxlength="328"
                     placeholder="Tell me what you're thinking"><%= thread.post %></textarea><br/>
                     <%console.log(thread)%>
           <h3>tags</h3>

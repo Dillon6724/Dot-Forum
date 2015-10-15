@@ -57,19 +57,16 @@
   </div>
 
 
-
-
-  <form action="/threads/comment/<%= thread._id %>?_method=PATCH" method="post">
-    <textarea name="comment"
-              placeholder=" Make comment"
-              rows="23"
-              cols="50" 
-              class="new-comment" 
-              cols="60"></textarea>
-    <input type="hidden"
-           name="author"
-           value="<%= currentUser %>">
+ <div class="new-comment">
+  <form class="textarea" action="/threads/comment/<%= thread._id %>?_method=PATCH" method="post">
+    <textarea maxlength="180" name="comment"placeholder=" Make comment"class="box" rows="8"cols="23"   cols="60"></textarea>
+    <input type="hidden"name="author"value="<%= currentUser %>">
     <input class="submit-comment" type="submit">
   </form>
-  </hr>
 </div>
+
+
+
+
+
+
