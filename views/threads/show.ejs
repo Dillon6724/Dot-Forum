@@ -1,9 +1,14 @@
 <!DOCTYPE html>
+<div></div>
+
+
+<div class="comment-button"><h3 class="comment-button-text">comment</h3></div>
+
 <% if (thread.author == currentUser) { %>
-  <a href="/thread/edit/<%=thread._id%>"><button>Edit this thread</button></a>
+  <a  href="/thread/edit/<%=thread._id%>"><button class="edit">edit</button></a>
   <form action="/thread/delete/<%= thread._id %>?_method=DELETE"
         method="post">
-    <input type="submit" value="Delete this Thread">
+    <input  class="delete" type="submit" value="delete">
   </form>
 <% } %>
 
@@ -16,7 +21,7 @@
   <input  type="submit"
           class="like" 
           name="like" 
-          value="Like"><%= thread.likes.length %>
+          value="Like"> <h5>Likes: <%= thread.likes.length %></h5>
 </form>
   <h2 class="author">user: <%= thread.author %></h2>
   <h1 class="post"><%= thread.post %></h1>
@@ -54,10 +59,12 @@
 
 
 
-  <form class="new-comment" action="/threads/comment/<%= thread._id %>?_method=PATCH" method="post">
+  <form action="/threads/comment/<%= thread._id %>?_method=PATCH" method="post">
     <textarea name="comment"
               placeholder=" Make comment"
-              rows="1"
+              rows="23"
+              cols="50" 
+              class="new-comment" 
               cols="60"></textarea>
     <input type="hidden"
            name="author"
