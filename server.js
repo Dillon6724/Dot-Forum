@@ -1,6 +1,9 @@
 
 var mongoose = require('mongoose'),
     server   = require('./lib/make-server')(),
+    PORT = process.env.PORT || 3000,
+    dbname = 'forum'
+    MONGOURI = process.env.MONGOLAB_URI || 'mongodb://localhost:27017',
     Schema = mongoose.Schema,
     verifyLogIn = function (req, res, next) {
     	if (req.session.currentUser){
@@ -42,7 +45,7 @@ var userSchema = new Schema({
 var User = mongoose.model('user', userSchema);
 var Thread = mongoose.model('thread', threadSchema);
 
-mongoose.connect('mongodb://localhost:27017/fourm');
+mongoose.connect(MONGOURI + '/' + dbname);
 
 
 ///////////////////////////////   ROUTES    /////////////////////////////////////////
@@ -217,16 +220,6 @@ server.get('/threads/new', verifyLogIn, function (req, res) {
 /////////////////////////      LISTNING AND HEROKU      //////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
 
-// server.get('/super-secret-test', function (req, res) {
-// 	res.write("Welcome to my app");
-// 	res.end()
-// });
-
-
-// mongoose.connect(MONOGOURI + '/' + dbname);
-
-// server.listen(PORT, function() {
-// 	console.log("SERVER IS UP:", PORT)
-// });
-
-server.listen(3000, function() {console.log('DONT GET STRESSED IT WILL WORK EVENTUALLY')})
+server.listen(PORT, function() {
+	console.log("SERVER IS UP:", PORT);
+});
