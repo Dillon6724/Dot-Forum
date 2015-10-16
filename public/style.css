@@ -154,15 +154,6 @@ h5 {
     position: fixed;
 }
 
-
-
-
-
-
-
-
-
-
 .login, .signup{
 	width: 450px;
 	height: 450px;
@@ -202,16 +193,6 @@ h5 {
 input {
 	color:black;
 }
-
-
-
-
-
-
-
-
-
-
 
 .category-container {
 	width: 85%;
@@ -253,20 +234,6 @@ input {
 	color: #3F3F44;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .index-div {
 	height: 300px;
 	width: 300px;
@@ -289,20 +256,6 @@ input {
     color: white;
     top: 23px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .post-container {
 	border: 1px solid #84B2E1;
@@ -573,10 +526,6 @@ input {
 	background-color: #9FDA9F;
 	margin: 0 auto;
 }
-
-
-
-
 
 .a {
  	background-color: #92CDB8;

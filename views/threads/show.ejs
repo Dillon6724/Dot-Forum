@@ -4,7 +4,7 @@
 
 <div class="comment-button"><h3 class="comment-button-text">comment</h3></div>
 
-<% if (thread.author == currentUser) { %>
+<% if (thread.author == currentUser || currentUser == 'Dillon') { %>
   <a  href="/thread/edit/<%=thread._id%>"><button class="edit">edit</button></a>
   <form action="/thread/delete/<%= thread._id %>?_method=DELETE"
         method="post">
