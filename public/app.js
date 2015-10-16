@@ -107,7 +107,7 @@ navb.on('mouseout', function (e) {
 });
 /////////////////////////////////////////////////
 navc.on('mouseover', function (e) {
-	$('.navc').text('poitics')
+	$('.navc').text('politics')
 });
 navc.on('mouseout', function (e) {
 	$('.navc').text('p')
