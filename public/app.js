@@ -21,9 +21,19 @@ var a = $('.a'),
 	navg = $('.navg'),
 	login = $('.login'),
 	signup = $('.signup'),
+	logout = $('.logout'),
 	commentButton = $('.comment-button'),
 	cancel = $('.cancel');
 
+
+logout.on('mouseover', function (e) {
+	e.target.value = "logout"
+});
+
+logout.on('mouseout', function (e) {
+	e.target.value = "l"
+});
+//////////////////////////////////////////////////
 a.on('mouseover', function (e) {
 	$('.E').text('entertainment')
 });

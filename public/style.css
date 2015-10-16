@@ -52,7 +52,7 @@ h5 {
 	position: fixed;
 }
 
-.nav {
+ .logout, .nav {
 	color: white;
 	text-align: center;
 	position: relative;
@@ -67,10 +67,7 @@ h5 {
 	line-height: 60px;
 }
 
-.nav:hover {
-}
-
-.nav-a, .nav-b, .nav-c, .nav-d, .nav-e, .nav-f, .nav-g {
+.logout, .nav-a, .nav-b, .nav-c, .nav-d, .nav-e, .nav-f, .nav-g {
 	position: relative;
 	width: 30px;
 	height: 30px;
@@ -82,10 +79,14 @@ h5 {
 }
 
 
+.logout{
+	border: none;
+    top: 541px;
+    left: 4px;
+    position: fixed;
+}
 
-
-
-.nav-a:hover {
+.nav-a:hover, .logout:hover {
 	background-color: #666666;
 	width: 80px;
 	height: 80px;
@@ -146,6 +147,13 @@ h5 {
 
 }
 
+.hide-bar {
+	background-color: #EEEEEE;
+	width: 127px;
+    height: 253px;
+    position: fixed;
+}
+
 
 
 
@@ -175,7 +183,7 @@ h5 {
  }
 
 .welcome-container {
-	width: 80%;
+	width: 73.8%;
 	height: 461px;
 	margin: 0 auto;
 	margin-top: 
@@ -207,7 +215,7 @@ input {
 
 .category-container {
 	width: 85%;
-	height: 560px;
+	height: 443px;
 	margin: 0 auto;
 } 
 
@@ -456,8 +464,8 @@ input {
 	height: 400px;
 	width: 400px;
 	border-radius: 200px;
-	top: 50px;
-	left: 400px;
+	top: 10px;
+	left: 440px;
 }
 
 .newcomment-hide {
@@ -485,7 +493,7 @@ input {
 .submit-comment, .cancel {
 	position: relative;
 	top: 0px;
-    left: 85px; 
+    left: 137px; 
     outline: none;
     background-color: #3D6A3D;
 	height: 60px;
@@ -572,31 +580,31 @@ input {
 
 .a {
  	background-color: #92CDB8;
- 	top: 98px;
-    left: 346px;
+ 	top: 166px;
+    left: 381px;
  }
  .b {
  	background-color: #92A769;
- 	top: 25px;
+ 	top: 146px;
     left: 809px;
  }
 .c {
  	background-color: #D0B566;
- 	top: 380px;
-    left: 886px;
+ 	top: 54px;
+    left: 587px;
  }
 .d {
  	background-color: #BC96C6;
- 	top: 298px;
+ 	top: 273px;
     left: 611px;
  }
  .e {
  	background-color: #D87E7E;
  	top: 21px;
-    left: 50px;
+    left: 144px;
  } 
 .f {
  	background-color: #D68E61;
- 	top: 371px;
+ 	top: 240px;
     left: 153px;
  }

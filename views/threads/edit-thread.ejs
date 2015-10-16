@@ -2,6 +2,11 @@
 <h1>edit</h1>
 
 <div class="new-container">
+  <% if (author) {%>
+    <form  action="/logout" method="post">
+      <input class="logout" type="submit" value="l">
+    </form>
+  <% } %>
   <div class="new-form">
     <form action="/threads/new" method="post">
       <div class="form-group">

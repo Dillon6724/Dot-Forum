@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <h1 class="category-title">choose a category</h1>
+<% if (currentUser) {%>
+    <form  action="/logout" method="post">
+      <input class="logout" type="submit" value="l">
+    </form>
+ <% } %>
   <div class="category-container">
-    <div class="category-div a"><a class="category-link E" href="/categories/entertainment">e</a></div>
+    <div class="category-div a "><a class="category-link E" href="/categories/entertainment">e</a></div>
     <div class="category-div b"><a class="category-link P"  href="/categories/politics">p</a></div>
     <div class="category-div c"><a class="category-link S"  href="/categories/science-technology">s</a></div>
     <div class="category-div d"><a class="category-link N"  href="/categories/nonsense">n</a></div>

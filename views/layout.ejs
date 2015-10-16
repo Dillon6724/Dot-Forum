@@ -8,20 +8,24 @@
  	 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <meta charset="UTF-8">
   <title>.dot</title>
+  <link rel="shortcut icon" href="http://www.papktop.com/wp-content/uploads/2014/03/0uOiJwHyZFk5NK0PsBqpVzVf9ypXpTuo0EZhy12XCoyr_riu2UCcvRX3_VbrXIeknv73=w300">
   <link rel="stylesheet" type="text/css" href="/style.css">
+  
 </head>
-<body>
 
+
+<body>
+	<% if (controller !== 'category') { %>
 		  <div class="nav-container">
 		  	<a class="nav nav-a nava" href="/categories">h</a>			
 		  	<a class="nav nav-b navb" href="/categories/entertainment">e</a>
-			<a class="nav nav-c navc" href="/categories/poitics">p</a>
+			<a class="nav nav-c navc" href="/categories/politics">p</a>
 			<a class="nav nav-c navd" href="/categories/music">m</a>
 			<a class="nav nav-e nave" href="/categories/film">f</a>
 			<a class="nav nav-f navf" href="/categories/science-technology">s</a>
 			<a class="nav nav-g navg" href="/categories/nonsense">n</a>
 		</div>
-
+	<% } %>
   <%- body %>
 
   <script type="text/javascript" src="/app.js"></script>

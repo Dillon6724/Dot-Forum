@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <h1>new post</h1>
 
+<% if (author) {%>
+    <form  action="/logout" method="post">
+      <input class="logout" type="submit" value="l">
+    </form>
+<% } %>
+
 <div class="new-container">
   <div class="new-form">
     <form action="/threads/new" method="post">

@@ -15,9 +15,11 @@ var mongoose = require('mongoose'),
     renderRoute = function (req, res, route) {
  
     	Thread.find({}).sort({ 'likesLength': -1 }).exec(function (err, threads) {
+			console.log(req.session)
 			if (!err){
 				res.render('category-index/' + route + '-index', {
-					allThreads: threads
+					allThreads: threads,
+					currentUser: req.session.currentUser
 				});
 			} else {
 				console.log(err);
@@ -51,15 +53,15 @@ mongoose.connect(MONGOURI + '/' + dbname);
 ///////////////////////////////   ROUTES    /////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
 
-// server.use('/categories', function (req, res, next) {
-// 	res.locals.controller = "default";
-// 	next()
-// });
+server.use('/category', function (req, res, next) {
+	res.locals.controller = "category";
+	next()
+});
 
-// server.use(function (req, res, next) {
-// 	res.locals.controller = res.locals.controller || "controlled"
-// 	next();
-// })
+server.use(function (req, res, next) {
+	res.locals.controller = res.locals.controller || "default"
+	next();
+})
 
 
 server.post('/threads/:id/like', function (req, res) {
@@ -120,7 +122,7 @@ server.delete('/thread/delete/:id', function (req, res) {
 	    if (err) {
 	      console.log(err);
 	    } else {
-	      res.redirect(302, '/categories');
+	      res.redirect(302, '/category');
 	    }
  	})
 })
@@ -131,7 +133,7 @@ server.post('/users', function (req, res) {
 	User.findOne({ username : attempt.username}, function (err, user) {
 		if (user && user.password === attempt.password) {
 			req.session.currentUser = user.username;
-			res.redirect(301, '/categories');
+			res.redirect(301, '/category');
 		} else {
 			res.redirect(301, '/');
 		}
@@ -144,7 +146,7 @@ server.post('/users/new', function (req, res) {
 	var newUser = new User(userInfo);
 	newUser.save(function (err, order) {
 		if (!err) {
-			res.redirect(302, '/categories');
+			res.redirect(302, '/category');
 		} else {
 				console.log(err);
 		}
@@ -177,8 +179,10 @@ server.get('/', function (req, res) {
 	res.render('welcome', {});
 });
 
-server.get('/categories', verifyLogIn, function (req, res) {
-	res.render('category-index/category')
+server.get('/category', verifyLogIn, function (req, res) {
+	res.render('category-index/category', {
+		currentUser : req.session.currentUser
+	})
 });
 
 server.get('/thread/:id', verifyLogIn, function (req, res) {
