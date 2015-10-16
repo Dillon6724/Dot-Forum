@@ -9,7 +9,7 @@
 <div class="category-container">
 	<% allThreads.forEach(function (thread, i) { %>
 	<% thread.tags.forEach(function (tag, i) { %>
-		<% if (tag == "entertainment") { %>
+		<% if (tag == "[politics]") { %>
 			<div class="index-div politics"><a  class="index-link"href="/thread/<%= thread._id %>"><%= thread.title %> (comments: <%= thread.comments.length %>)<a/></div>
 		<% }; %>
 	<% }); %>
